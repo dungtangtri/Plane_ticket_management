@@ -1,11 +1,12 @@
-﻿#include "Header.h"
+﻿#include "PhongVe.h"
 #include <iostream>
 #include <string>
 using namespace std;
 
 int main()
 {
-    PhongVe A("tcb", "Hcc", "Habc", 16000);
-    A.display();
+
+    VeQuocTe B("a", "b", "c", 100000);
+    B.display();
     return 0;
 }

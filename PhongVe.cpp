@@ -1,4 +1,4 @@
-#include "Header.h"
+#include "PhongVe.h"
 #include <iostream>
 #include <string>
 #include <math.h>
@@ -6,7 +6,9 @@ using namespace std;
 
 PhongVe::PhongVe() {
 	giave = 0;
-	hoahong = 0;
+	ten = " ";
+	noiden = " ";
+	noidi = " ";
 }
 PhongVe::PhongVe(string ten, string noiden, string noidi,int giave) {
 	this->ten = ten;
@@ -38,12 +40,9 @@ int PhongVe::getGiave() {
 void PhongVe::setGiave(int giave) {
 	this->giave = giave;
 }
-int PhongVe::getHoahong() {
-	return hoahong;
-}
 void PhongVe::display() {
-	cout << "Ten khach hang : " << ten << "\n";
-	cout << "Noi den : " << noiden << "\n";
-	cout << "Noi di : " << noidi << "\n";
-	cout << "Gia ve : " << giave << "\n";
+	cout << "Ten khach hang : " << getTen() << "\n";
+	cout << "Noi den : " << getNoiden() << "\n";
+	cout << "Noi di : " << getNoidi() << "\n";
+	cout << "Gia ve : " << getGiave() << "\n";
 }
