@@ -1,5 +1,7 @@
-#pragma once
+﻿#pragma once
 #include <string>
+#include <vector>
+#include "stdio.h"
 
 class PhongVe {
 private:
@@ -53,3 +55,4 @@ public:
 	void setHoahong(int hoahong);
 	void display();
 };
+
