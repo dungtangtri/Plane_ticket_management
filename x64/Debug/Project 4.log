@@ -1,2 +1,4 @@
 ﻿  main.cpp
+VeNoiDia.obj : warning LNK4099: PDB 'vc143.pdb' was not found with 'VeNoiDia.obj' or at 'C:\Users\dungt\OneDrive\Ta`i liê?u\Visual Studio Project\Project 4\x64\Debug\vc143.pdb'; linking object as if no debug info
+VeQuocTe.obj : warning LNK4099: PDB 'vc143.pdb' was not found with 'VeQuocTe.obj' or at 'C:\Users\dungt\OneDrive\Ta`i liê?u\Visual Studio Project\Project 4\x64\Debug\vc143.pdb'; linking object as if no debug info
   Project 4.vcxproj -> C:\Users\dungt\OneDrive\Tài liệu\Visual Studio Project\Project 4\x64\Debug\Project 4.exe
