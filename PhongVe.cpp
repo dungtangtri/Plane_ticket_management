@@ -8,6 +8,7 @@ PhongVe::PhongVe() {
 	ten = " ";
 	noiden = " ";
 	noidi = " ";
+	thoigian = " ";
 }
 PhongVe::PhongVe(string ten, string noiden, string noidi,int giave) {
 	this->ten = ten;
@@ -39,9 +40,18 @@ int PhongVe::getGiave() {
 void PhongVe::setGiave(int giave) {
 	this->giave = giave;
 }
+string PhongVe::getThoigian() {
+	return thoigian;
+}
+void PhongVe::setThoigian(time_t thoigians) {
+	tm* t = localtime(&thoigians);
+	char* time = asctime(t);
+	thoigian = time;
+}
 void PhongVe::display() {
 	cout << "Ten khach hang : " << getTen() << "\n";
 	cout << "Noi den : " << getNoiden() << "\n";
 	cout << "Noi di : " << getNoidi() << "\n";
 	cout << "Gia ve : " << getGiave() << "\n";
+	cout << "Thoi gian : " << getThoigian() << "\n";
 }

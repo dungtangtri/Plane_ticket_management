@@ -1,13 +1,18 @@
 ﻿#include "PhongVe.h"
 #include <iostream>
 #include <string>
+#include <ctime>
 using namespace std;
 
 void get_input(vector<PhongVe> &p1, int n1) { // tạo số object của PhongVe = số lượng người dùng nhập vào
 	string depart;//biến trung gian cho nơi đi
 	string arrive;//biến trung gian cho nơi đến
     int price;//biến trung gian giá vé
-	for (int i = 1; i <= n1; i++)
+	int ngay;
+	int thang;
+	int nam;
+	static int i = 1;// biến tĩnh để lưu số tổng số máy bay đã thêm
+	for (int j = 0; j < n1; j++)
 	{
 		PhongVe p;
 		cout << "\n Nhap noi di may bay " << i << ": ";
@@ -26,7 +31,26 @@ void get_input(vector<PhongVe> &p1, int n1) { // tạo số object của PhongVe
 		cin >> price;
 		p.setGiave(price);
 
-		p1.push_back(p);          
+		cout << "\n Nhap ngay : ";
+		cin >> ngay;
+		while (ngay < 1 || ngay > 31) {
+			cout << "\n Vui long nhap lai : ";
+			cin >> ngay;
+		}
+		cin >> thang;
+		while (thang < 1 || thang > 12) {
+			cout << "\n Vui long nhap lai : ";
+			cin >> thang;
+		}
+		cin >> nam;
+		while (nam < 1970 || nam > 2022) {
+			cout << "\n Vui long nhap lai : ";
+			cin >> nam;
+		}
+		
+
+		p1.push_back(p);  
+		i++;
 	}
 }
 void displayoption() {
@@ -41,12 +65,17 @@ void displayoption() {
 	cout << "7 : Tinh so tien hoa hong phong ve nhan duoc trong khoang thoi gian\n";
 	cout << "8 : Thoat chuong trinh\n";
 }
- 
 
 
 int main() {
-	int n, m, somaybay, q ;
-	int newprice;
+	int n;
+	int m;
+	int somaybay;
+	int q;
+	int x;
+	int newprice;//  giá vé máy bay thay đổi
+	string newdepart;// nơi đi thay đổi
+	static string newarrive;//nơi đến thay đổi
 	vector<PhongVe> p;
 	displayoption();
 	while (!(cin >> n)) {
@@ -54,12 +83,10 @@ int main() {
 		cin.ignore(1000, '\n');
 		cout << "Vui long nhap lai dung dinh dang.\n";
 	}
-	
-	switch (n) {
-	case 1:
-	{
+
+	while (n == 1) {
 		cout << "Vui long nhap so luong may bay ban muon them : \n";
-		
+
 		while (!(cin >> somaybay)) {
 			cin.clear();
 			cin.ignore(1000, '\n');
@@ -67,27 +94,32 @@ int main() {
 		}
 
 		get_input(p, somaybay);
+		displayoption();
+
+		while (!(cin >> n)) {
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Vui long nhap lai dung dinh dang.\n";
+		}
+
 	}
-	case 2:
+	while (n == 2)
 	{
 		cout << "Ban muon sua thong tin nao ?\n";
 		cout << "1: Gia ve\n";
 		cout << "2: Noi den\n";
 		cout << "3: Noi di\n";
 		cout << "4: Thoat\n";
-		
+
 		while (!(cin >> m)) {
 			cin.clear();
 			cin.ignore(1000, '\n');
 			cout << "Vui long nhap lai dung dinh dang.\n";
 		}
-		
 
-		switch (m)
-		{
-		case 1:
-		{
-			for (int i = 0; i < somaybay; i++) {
+
+		while (m == 1) {
+			for (int i = 0; i < p.size(); i++) {
 				p.at(i).display();
 			}
 			cout << "Vui long chon so may bay ban muon sua :\n ";
@@ -96,19 +128,117 @@ int main() {
 				cin.ignore(1000, '\n');
 				cout << "Vui long nhap lai dung dinh dang.\n";
 			}
-			cout << "Vui long nhap so ban muon sua lai :\n ";
+			cout << "Vui long nhap gia ve moi :\n ";
 			while (!(cin >> newprice)) {
 				cin.clear();
 				cin.ignore(1000, '\n');
 				cout << "Vui long nhap lai dung dinh dang.\n";
 			}
 			p.at(q - 1).setGiave(newprice);
-			for (int i = 0; i < somaybay; i++) {
-				p.at(i).display();
+			cout << "Thong tin moi la : " << endl;
+			p.at(q - 1).display();
+			while (!(cin >> m)) {
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "Vui long nhap lai dung dinh dang.\n";
 			}
 		}
+		while (m == 2)
+		{
+			for (int i = 0; i < p.size(); i++) {
+				p.at(i).display();
+			}
+			cout << "Vui long chon so may bay ban muon sua :\n ";
+			while (!(cin >> q)) {
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "Vui long nhap lai dung dinh dang.\n";
+			}
+			cout << "Vui long nhap noi den moi :\n ";
+			while (!(cin >> newarrive)) {
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "Vui long nhap lai dung dinh dang.\n";
+			}
+			p.at(q - 1).setNoiden(newarrive);
+			cout << "Thong tin moi la : " << endl;
+			p.at(q - 1).display();
+			while (!(cin >> m)) {
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "Vui long nhap lai dung dinh dang.\n";
+			}
 		}
+		while (m == 3)
+		{
+			for (int i = 0; i < p.size(); i++) {
+				p.at(i).display();
+			}
+			cout << "Vui long chon so may bay ban muon sua :\n ";
+			while (!(cin >> q)) {
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "Vui long nhap lai dung dinh dang.\n";
+			}
+			cout << "Vui long nhap so noi di moi :\n ";
+			while (!(cin >> newdepart)) {
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "Vui long nhap lai dung dinh dang.\n";
+			}
+			p.at(q - 1).setNoidi(newdepart);
+			cout << "Thong tin moi la : " << endl;
+			p.at(q - 1).display();
+			while (!(cin >> m)) {
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "Vui long nhap lai dung dinh dang.\n";
+			}
+		}
+
+		if (m == 4)
+		{
+			displayoption();
+			while (!(cin >> n)) {
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "Vui long nhap lai dung dinh dang.\n";
+			}
+
 		}
 	}
-	return 0;
-}
+	while (n == 3) {
+		cout << "Nhap so may bay ban muon xoa : " << endl;
+		while (!(cin >> x)) {
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Vui long nhap lai dung dinh dang.\n";
+		}
+		cout << "Danh sach may bay truoc khi xoa " << endl;
+		for (int i = 0; i < p.size(); i++) {
+			p.at(i).display();
+		}
+		while (x >= p.size()) {
+			cout << "Vui long nhap lai so may bay " << endl;
+			while (!(cin >> x)) {
+				cin.clear();
+				cin.ignore(1000, '\n');
+				cout << "Vui long nhap lai dung dinh dang.\n";
+			}
+		}
+		p.erase(p.begin() + x - 1);//do vector đầu tiên có index là 0
+		cout << "Danh sach may bay sau khi xoa : " << endl;
+		for (int i = 0; i < p.size(); i++) {
+			p.at(i).display();
+		}
+		while (!(cin >> n)) {
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Vui long nhap lai dung dinh dang.\n";
+		}
+	}
+	while (n == 4) {
+
+	}
+
+}//kết thúc hàm main
