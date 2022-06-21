@@ -2,18 +2,22 @@
 #include <string>
 #include <vector>
 #include "stdio.h"
-#include <ctime>
+
 class PhongVe {
 private:
+	int check;// check = 1 la ve noi dia, check = 2 la ve quoc te
 	int giave;
 	std::string ten;
 	std::string noiden;
 	std::string noidi;
-	std::time_t thoigians;// thời gian tính theo giây , tính từ 0 giờ 0 phút 1 tháng 1 năm 1970
-	std::string thoigian;
+	int ngay;
+	int thang;
+	int nam;
 public:
+	
 	PhongVe();
-	PhongVe(std::string ten, std::string noiden, std::string noidi, int giave);
+	PhongVe(std::string ten, std::string noiden, std::string noidi, int giave,int ngay, int thang, int nam);
+
 
 	int getGiave();
 	void setGiave(int giave);
@@ -27,8 +31,18 @@ public:
 	std::string getNoidi();
 	void setNoidi(std::string noidi);
 
-	std::string getThoigian();
-	void setThoigian(time_t thoigian );
+	void setNgay(int ngay);
+	int getNgay();
+
+	void setThang(int thang);
+	int getThang();
+
+	void setNam(int ngay);
+	int getNam();
+
+	void setCheck(int check);
+	int getCheck();
+
 
 	void display();
 
@@ -43,7 +57,7 @@ private:
 	int hoahong;
 public:
 	VeNoiDia();
-	VeNoiDia(std::string ten, std::string noiden, std::string noidi, int giave) : PhongVe(ten, noiden, noidi, giave){};
+	VeNoiDia(std::string ten, std::string noiden, std::string noidi, int giave, int ngay, int thang, int nam,int hoahong) ;
 	int getHoahong();
 	void setHoahong(int hoahong);
 	void display();
@@ -55,7 +69,7 @@ private:
 	int hoahong;
 public:
 	VeQuocTe();
-	VeQuocTe(std::string ten, std::string noiden, std::string noidi, int giave) : PhongVe(ten, noiden, noidi, giave) {};
+	VeQuocTe(std::string ten, std::string noiden, std::string noidi, int giave, int ngay, int thang, int nam,int hoahong) ;
 	int getHoahong();
 	void setHoahong(int hoahong);
 	void display();

@@ -8,14 +8,41 @@ PhongVe::PhongVe() {
 	ten = " ";
 	noiden = " ";
 	noidi = " ";
-	thoigian = " ";
+	ngay = 1;
+	thang = 1;
+	nam = 1900;
+	check = 1;
 }
-PhongVe::PhongVe(string ten, string noiden, string noidi,int giave) {
+PhongVe::PhongVe(string ten, string noiden, string noidi,int giave,int ngay, int thang, int nam) {
 	this->ten = ten;
 	this->noiden = noiden;
 	this->noidi = noidi;
 	this->giave = giave;
+	this->ngay = ngay;
+	this->thang = thang;
+	this->nam = nam;
 }
+
+void PhongVe::setNgay(int ngay) {
+	this->ngay = ngay;
+}
+int PhongVe::getNgay() {
+	return ngay;
+}
+int PhongVe::getThang() {
+	return thang;
+}
+
+void PhongVe::setThang(int thang) {
+	this->thang = thang;
+}
+int PhongVe::getNam() {
+	return nam;
+}
+void PhongVe::setNam(int nam) {
+	this->nam = nam;
+}
+
 string PhongVe::getTen() {
 	return ten;
 }
@@ -40,18 +67,26 @@ int PhongVe::getGiave() {
 void PhongVe::setGiave(int giave) {
 	this->giave = giave;
 }
-string PhongVe::getThoigian() {
-	return thoigian;
+int PhongVe::getCheck() {
+	return check;
 }
-void PhongVe::setThoigian(time_t thoigians) {
-	tm* t = localtime(&thoigians);
-	char* time = asctime(t);
-	thoigian = time;
+void PhongVe::setCheck(int check) {
+	this->check = check;
 }
+ 
+
 void PhongVe::display() {
 	cout << "Ten khach hang : " << getTen() << "\n";
 	cout << "Noi den : " << getNoiden() << "\n";
 	cout << "Noi di : " << getNoidi() << "\n";
 	cout << "Gia ve : " << getGiave() << "\n";
-	cout << "Thoi gian : " << getThoigian() << "\n";
+	cout << "Ngay di : " << getNgay() << endl;
+	cout << "Thang di : " << getThang() << endl;
+	cout << "Nam di : " << getNam() << endl;
+	if (check = 1) {
+		cout << "Ve noi dia " << endl;
+	}
+	else {
+		cout << "Ve quoc te " << endl;
+	}
 }
