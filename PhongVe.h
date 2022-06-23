@@ -61,6 +61,7 @@ public:
 	int getHoahong();
 	void setHoahong(int hoahong);
 	void display();
+	
 };
 
 

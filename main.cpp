@@ -388,8 +388,15 @@ int main() {
 		}
 	}
 	while (n == 7)/*thong ke hoa hong ve may bay noi dia trong khoang thoi gian*/ {
-		vector <VeNoiDia> noidia;
-		static int tong = 0;
+		static int count = 0;
+		for (int i = 0; i < p.size(); i++) {
+			if (p.at(i).getCheck() == 1) {
+				count++;
+			}
+		}
+		vector <VeNoiDia> noidia(count);// phải khai báo size cùa vector để phân phát bộ nhớ , không thì khi dùng noidia.at(i) sẽ báo lỗi out of range
+
+		int tong = 0;
 		int d1;
 		int m1;
 		int y1;
@@ -410,22 +417,48 @@ int main() {
 		cin >> m2;
 		cout << "Nhap nam ket thuc tinh : " << endl;
 		cin >> y2;
-				for (int k = d1; k <= d2; k++) {
-					for (int m = m1; m <= m2; m++) {
-						for (int n = y1; n <= y2; n++) {
-							for(int i = 0; i < p.size(); i++){
-							    if (k == p.at(i).getNgay() && m == p.at(i).getThang() && n == p.at(i).getNam()&& p.at(i).getCheck() == 1) {
-									for (int j = 0; j < p.size(); j++) {
-
-										noidia.at(j).setGiave(p.at(i).getGiave());
-										tong += noidia.at(j).getGiave() * 5 / 100;
-									}
+		while(y1 > y2) {
+			cout << "Vui long nhap lai ";
+			cin.sync();
+			cout << "Nhap nam bat dau tinh : " << endl;
+			cin >> y1;
+			cout << "Nhap nam ket thuc tinh : " << endl;
+			cin >> y2;
+		}
+		if (y1 == y2) {
+			while (m1 > m2) {
+				cout << "Vui long nhap lai ";
+				cin.sync();
+				cout << "Nhap thang bat dau tinh : " << endl;
+				cin >> m1;
+				cout << "Nhap thang ket thuc tinh : " << endl;
+				cin >> m2;
+			}
+			if (m1 == m2) {
+				while (d1 > d2) {
+					cout << "Vui long nhap lai ";
+					cin.sync();
+					cout << "Nhap ngay bat dau tinh : " << endl;
+					cin >> d1;
+					cout << "Nhap ngay ket thuc tinh : " << endl;
+					cin >> d2;
+				}
+				for (int i = d1; i <= d2; i++) {
+					for (int j = 0; j < p.size(); j++) {
+						if (p.at(j).getCheck() == 1) {
+							if (i == p.at(j).getNgay()) {
+								for (int k = 0; k < count; k++) {
+									noidia.at(k).setGiave(p.at(j).getGiave());
+									tong += noidia.at(k).getHoahong()/count;
 								}
 							}
 						}
 					}
 				}
-
+			}
+			if (m1 < m2) {
+				
+		}
 		cout << "Tong so hoa hong phong ve thu duoc trong thoi gian ban da nhap la : " << tong << endl;
 	}
 }//kết thúc hàm main

@@ -10,7 +10,7 @@ VeQuocTe::VeQuocTe(string ten, string noiden, string noidi, int giave, int ngay,
 	this->hoahong = hoahong;
 }
 int VeQuocTe::getHoahong() {
-	return PhongVe::getGiave() * 7 / 100 + 100000;
+	return VeQuocTe::getGiave() * 7 / 100 + 100000;
 }
 void VeQuocTe::setHoahong(int hoahong) {
 	this->hoahong = hoahong;

@@ -10,7 +10,7 @@ using namespace std;
 		this->hoahong = hoahong;
 	}
 	int VeNoiDia::getHoahong() {
-		return PhongVe::getGiave() * 5 / 100;
+		return (VeNoiDia::getGiave()) * 5 / 100;
 	}
 	void VeNoiDia::setHoahong(int hoahong) {
 		this->hoahong = hoahong;
