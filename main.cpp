@@ -417,7 +417,7 @@ int main() {
 		cin >> m2;
 		cout << "Nhap nam ket thuc tinh : " << endl;
 		cin >> y2;
-		while(y1 > y2) {
+		while(y1 > y2) { // báo lỗi khi năm bắt đầu tìm lớn hơn năm kết thúc tìm
 			cout << "Vui long nhap lai ";
 			cin.sync();
 			cout << "Nhap nam bat dau tinh : " << endl;
@@ -425,8 +425,8 @@ int main() {
 			cout << "Nhap nam ket thuc tinh : " << endl;
 			cin >> y2;
 		}
-		if (y1 == y2) {
-			while (m1 > m2) {
+		if (y1 == y2) { //khi tìm trong cùng 1 năm
+			while (m1 > m2) { // cùng năm mà tháng bắt đầu tìm lớn hơn tháng kết thúc tìm thì báo lỗi
 				cout << "Vui long nhap lai ";
 				cin.sync();
 				cout << "Nhap thang bat dau tinh : " << endl;
@@ -434,7 +434,7 @@ int main() {
 				cout << "Nhap thang ket thuc tinh : " << endl;
 				cin >> m2;
 			}
-			if (m1 == m2) {
+			if (m1 == m2) { // khi tìm trong cùng tháng và cùng năm
 				while (d1 > d2) {
 					cout << "Vui long nhap lai ";
 					cin.sync();
@@ -449,15 +449,36 @@ int main() {
 							if (i == p.at(j).getNgay()) {
 								for (int k = 0; k < count; k++) {
 									noidia.at(k).setGiave(p.at(j).getGiave());
-									tong += noidia.at(k).getHoahong()/count;
+									tong += noidia.at(k).getHoahong() / count;
 								}
 							}
 						}
 					}
 				}
 			}
-			if (m1 < m2) {
-				
+			if (m1 < m2) { // khi tháng bắt đầu tìm nhỏ hơn tháng kết thúc tìm
+				if (d1 < d2) { // khi ngày bắt đầu tìm nhỏ hơn ngày kết thúc tìm
+					for (int i = d1; i <= d2; i++) {
+						for (int j = m1; j <= m2; j++) {
+							for (int k = 0; k < p.size(); k++) {
+								if (p.at(k).getCheck() == 1) {
+									if (i == p.at(k).getNgay()) {
+										if (j == p.at(k).getThang()) {
+											for (int g = 0; g < count; g++) {
+												noidia.at(g).setGiave(p.at(k).getGiave());
+												tong += noidia.at(g).getHoahong() / count;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				if (d1 > d2) { // khi ngày bắt đầu tìm lớn hơn ngày kết thúc tìm
+
+				}
+			}
 		}
 		cout << "Tong so hoa hong phong ve thu duoc trong thoi gian ban da nhap la : " << tong << endl;
 	}
