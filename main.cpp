@@ -373,7 +373,7 @@ int main() {
 		getline(cin >> ws, noidi);
 		for (int i = 0; i < p.size(); i++) {
 			if (noidi == p.at(i).getNoidi()) {
-				 p.at(i).display();
+				p.at(i).display();
 			}
 		}
 	}
@@ -387,16 +387,8 @@ int main() {
 			}
 		}
 	}
-	while (n == 7)/*thong ke hoa hong ve may bay noi dia trong khoang thoi gian*/ {
-		static int count = 0;
-		for (int i = 0; i < p.size(); i++) {
-			if (p.at(i).getCheck() == 1) {
-				count++;
-			}
-		}
-		vector <VeNoiDia> noidia(count);// phải khai báo size cùa vector để phân phát bộ nhớ , không thì khi dùng noidia.at(i) sẽ báo lỗi out of range
-
-		int tong = 0;
+	while (n == 7) {/*thong ke ve may bay noi dia trong khoang thoi gian*/
+		int count = 0;
 		int d1;
 		int m1;
 		int y1;
@@ -406,7 +398,7 @@ int main() {
 		cin >> m1;
 		cout << "Nhap nam bat dau tinh : " << endl;
 		cin >> y1;
-		
+
 
 		int d2;
 		int m2;
@@ -417,7 +409,7 @@ int main() {
 		cin >> m2;
 		cout << "Nhap nam ket thuc tinh : " << endl;
 		cin >> y2;
-		while(y1 > y2) { // báo lỗi khi năm bắt đầu tìm lớn hơn năm kết thúc tìm
+		while (y1 > y2) { // báo lỗi khi năm bắt đầu tìm lớn hơn năm kết thúc tìm
 			cout << "Vui long nhap lai ";
 			cin.sync();
 			cout << "Nhap nam bat dau tinh : " << endl;
@@ -443,14 +435,11 @@ int main() {
 					cout << "Nhap ngay ket thuc tinh : " << endl;
 					cin >> d2;
 				}
-				for (int i = d1; i <= d2; i++) {
-					for (int j = 0; j < p.size(); j++) {
-						if (p.at(j).getCheck() == 1) {
-							if (i == p.at(j).getNgay()) {
-								for (int k = 0; k < count; k++) {
-									noidia.at(k).setGiave(p.at(j).getGiave());
-									tong += noidia.at(k).getHoahong() / count;
-								}
+			for (int i = d1; i <= d2; i++) {
+				for (int j = 0; j < p.size(); j++) {
+					if(p.at(j).getCheck() == 1){
+						if (i == p.at(j).getNgay()) {
+							count++;
 							}
 						}
 					}
@@ -464,10 +453,7 @@ int main() {
 								if (p.at(k).getCheck() == 1) {
 									if (i == p.at(k).getNgay()) {
 										if (j == p.at(k).getThang()) {
-											for (int g = 0; g < count; g++) {
-												noidia.at(g).setGiave(p.at(k).getGiave());
-												tong += noidia.at(g).getHoahong() / count;
-											}
+											count++;
 										}
 									}
 								}
@@ -475,11 +461,108 @@ int main() {
 						}
 					}
 				}
-				if (d1 > d2) { // khi ngày bắt đầu tìm lớn hơn ngày kết thúc tìm
+			if (d1 > d2) { // khi ngày bắt đầu tìm lớn hơn ngày kết thúc tìm
 
 				}
 			}
 		}
-		cout << "Tong so hoa hong phong ve thu duoc trong thoi gian ban da nhap la : " << tong << endl;
+		cout << "So may bay noi dia co trong thoi gian da nhap la : " << count << endl;
+	} 
+
+	while (n == 8) { /* thong ke hoa hong phong ve nhan duoc trong khoang thoi gian*/
+	static int count = 0;
+	for (int i = 0; i < p.size(); i++) {
+		if (p.at(i).getCheck() == 1) {
+			count++;
+		}
+	}
+	vector <VeNoiDia> noidia(count);// phải khai báo size cùa vector để phân phát bộ nhớ , không thì khi dùng noidia.at(i) sẽ báo lỗi out of range
+
+	int tong = 0;
+	int d1;
+	int m1;
+	int y1;
+	cout << "Nhap ngay bat dau tinh : " << endl;
+	cin >> d1;
+	cout << "Nhap thang bat dau tinh : " << endl;
+	cin >> m1;
+	cout << "Nhap nam bat dau tinh : " << endl;
+	cin >> y1;
+
+
+	int d2;
+	int m2;
+	int y2;
+	cout << "Nhap ngay ket thuc tinh : " << endl;
+	cin >> d2;
+	cout << "Nhap thang ket thuc tinh : " << endl;
+	cin >> m2;
+	cout << "Nhap nam ket thuc tinh : " << endl;
+	cin >> y2;
+	while (y1 > y2) { // báo lỗi khi năm bắt đầu tìm lớn hơn năm kết thúc tìm
+		cout << "Vui long nhap lai ";
+		cin.sync();
+		cout << "Nhap nam bat dau tinh : " << endl;
+		cin >> y1;
+		cout << "Nhap nam ket thuc tinh : " << endl;
+		cin >> y2;
+	}
+	if (y1 == y2) { //khi tìm trong cùng 1 năm
+		while (m1 > m2) { // cùng năm mà tháng bắt đầu tìm lớn hơn tháng kết thúc tìm thì báo lỗi
+			cout << "Vui long nhap lai ";
+			cin.sync();
+			cout << "Nhap thang bat dau tinh : " << endl;
+			cin >> m1;
+			cout << "Nhap thang ket thuc tinh : " << endl;
+			cin >> m2;
+		}
+		if (m1 == m2) { // khi tìm trong cùng tháng và cùng năm
+			while (d1 > d2) {
+				cout << "Vui long nhap lai ";
+				cin.sync();
+				cout << "Nhap ngay bat dau tinh : " << endl;
+				cin >> d1;
+				cout << "Nhap ngay ket thuc tinh : " << endl;
+				cin >> d2;
+			}
+			for (int i = d1; i <= d2; i++) {
+				for (int j = 0; j < p.size(); j++) {
+					if (p.at(j).getCheck() == 1) {
+						if (i == p.at(j).getNgay()) {
+							for (int k = 0; k < count; k++) {
+								noidia.at(k).setGiave(p.at(j).getGiave());
+								tong += noidia.at(k).getHoahong() / count;
+							}
+						}
+					}
+				}
+			}
+		}
+		if (m1 < m2) { // khi tháng bắt đầu tìm nhỏ hơn tháng kết thúc tìm
+			if (d1 < d2) { // khi ngày bắt đầu tìm nhỏ hơn ngày kết thúc tìm
+				for (int i = d1; i <= d2; i++) {
+					for (int j = m1; j <= m2; j++) {
+						for (int k = 0; k < p.size(); k++) {
+							if (p.at(k).getCheck() == 1) {
+								if (i == p.at(k).getNgay()) {
+									if (j == p.at(k).getThang()) {
+										for (int g = 0; g < count; g++) {
+											noidia.at(g).setGiave(p.at(k).getGiave());
+											tong += noidia.at(g).getHoahong() / count;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			if (d1 > d2) { // khi ngày bắt đầu tìm lớn hơn ngày kết thúc tìm
+
+			}
+		}
+	}
+	cout << "Tong so hoa hong phong ve thu duoc trong thoi gian ban da nhap la : " << tong << endl;
 	}
 }//kết thúc hàm main
+
