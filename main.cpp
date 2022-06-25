@@ -29,13 +29,13 @@ int getIntInput(int from, int to) { /* code nhằm kiểm tra đầu vào của 
 }
 int getMergeNum1(int d, int m, int y) {
 	string a;
-	if (d < 10) {
+	if (d < 10 && m >= 10) {
 		a = to_string(y) + to_string(m) + '0' + to_string(d);
 	}
-	if (m < 10) {
+	else if (m < 10 && d >= 10) {
 		a = to_string(y) + '0' + to_string(m) + to_string(d);
 	}
-	if (m < 10 && d < 10) {
+	else if (m < 10 && d < 10) {
 		a = to_string(y) + '0' + to_string(m) + '0' + to_string(d);
 	}
 	else {

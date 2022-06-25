@@ -75,13 +75,13 @@ void PhongVe::setCheck(int check) {
 }
 int PhongVe::getMergeNum() {
 	string a;
-	if (getNgay() < 10) {
+	if (getNgay() < 10 && getThang() >= 10) {
 		a = to_string(getNam()) + to_string(getThang()) + '0' + to_string(getNgay());
 	}
-	if (getThang() < 10) {
+	else if (getThang() < 10 && getNgay() >= 10) {
 		a = to_string(getNam()) + '0' + to_string(getThang())  + to_string(getNgay());
 	}
-	if (getThang() < 10 && getNgay() < 10) {
+	else if (getThang() < 10 && getNgay() < 10) {
 		a = to_string(getNam()) + '0' + to_string(getThang()) + '0' + to_string(getNgay());
 	}
 	else {
