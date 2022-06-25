@@ -73,7 +73,33 @@ int PhongVe::getCheck() {
 void PhongVe::setCheck(int check) {
 	this->check = check;
 }
- 
+int PhongVe::getMergeNum() {
+	string a;
+	if (getNgay() < 10) {
+		a = to_string(getNam()) + to_string(getThang()) + '0' + to_string(getNgay());
+	}
+	if (getThang() < 10) {
+		a = to_string(getNam()) + '0' + to_string(getThang())  + to_string(getNgay());
+	}
+	if (getThang() < 10 && getNgay() < 10) {
+		a = to_string(getNam()) + '0' + to_string(getThang()) + '0' + to_string(getNgay());
+	}
+	else {
+		a = to_string(getNam())  + to_string(getThang()) + to_string(getNgay());
+	}
+	int b = stoi(a);
+	return b;
+ }
+
+int  PhongVe::getHoahong() {
+	if (getCheck() == 1) {
+		return getGiave() * 5 / 100;
+	}
+	else {
+		return (getGiave() * 7 / 100) + 100000;
+	}
+}
+
 
 void PhongVe::display() {
 	cout << "Ten khach hang : " << getTen() << "\n";

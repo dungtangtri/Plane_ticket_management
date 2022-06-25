@@ -13,6 +13,8 @@ private:
 	int ngay;
 	int thang;
 	int nam;
+	int hoahong;
+	int mergeNum;
 public:
 	
 	PhongVe();
@@ -43,7 +45,11 @@ public:
 	void setCheck(int check);
 	int getCheck();
 
+	int getMergeNum();
 
+	int getHoahong();
+	
+	
 	void display();
 
 

@@ -27,6 +27,23 @@ int getIntInput(int from, int to) { /* code nhằm kiểm tra đầu vào của 
 
 	return validinput;
 }
+int getMergeNum1(int d, int m, int y) {
+	string a;
+	if (d < 10) {
+		a = to_string(y) + to_string(m) + '0' + to_string(d);
+	}
+	if (m < 10) {
+		a = to_string(y) + '0' + to_string(m) + to_string(d);
+	}
+	if (m < 10 && d < 10) {
+		a = to_string(y) + '0' + to_string(m) + '0' + to_string(d);
+	}
+	else {
+		a = to_string(y) + to_string(m) + to_string(d);
+	}
+	int b = stoi(a);
+	return b;
+}
 
 void get_input(vector<PhongVe> &p1, int n1) { // tạo số object của PhongVe = số lượng người dùng nhập vào
 	string depart;//biến trung gian cho nơi đi
@@ -398,7 +415,7 @@ int main() {
 		cin >> m1;
 		cout << "Nhap nam bat dau tinh : " << endl;
 		cin >> y1;
-
+		int a = getMergeNum1(d1, m1, y1);
 
 		int d2;
 		int m2;
@@ -409,160 +426,58 @@ int main() {
 		cin >> m2;
 		cout << "Nhap nam ket thuc tinh : " << endl;
 		cin >> y2;
-		while (y1 > y2) { // báo lỗi khi năm bắt đầu tìm lớn hơn năm kết thúc tìm
-			cout << "Vui long nhap lai ";
-			cin.sync();
-			cout << "Nhap nam bat dau tinh : " << endl;
-			cin >> y1;
-			cout << "Nhap nam ket thuc tinh : " << endl;
-			cin >> y2;
-		}
-		if (y1 == y2) { //khi tìm trong cùng 1 năm
-			while (m1 > m2) { // cùng năm mà tháng bắt đầu tìm lớn hơn tháng kết thúc tìm thì báo lỗi
-				cout << "Vui long nhap lai ";
-				cin.sync();
-				cout << "Nhap thang bat dau tinh : " << endl;
-				cin >> m1;
-				cout << "Nhap thang ket thuc tinh : " << endl;
-				cin >> m2;
-			}
-			if (m1 == m2) { // khi tìm trong cùng tháng và cùng năm
-				while (d1 > d2) {
-					cout << "Vui long nhap lai ";
-					cin.sync();
-					cout << "Nhap ngay bat dau tinh : " << endl;
-					cin >> d1;
-					cout << "Nhap ngay ket thuc tinh : " << endl;
-					cin >> d2;
-				}
-			for (int i = d1; i <= d2; i++) {
-				for (int j = 0; j < p.size(); j++) {
-					if(p.at(j).getCheck() == 1){
-						if (i == p.at(j).getNgay()) {
-							count++;
-							}
-						}
-					}
-				}
-			}
-			if (m1 < m2) { // khi tháng bắt đầu tìm nhỏ hơn tháng kết thúc tìm
-				if (d1 < d2) { // khi ngày bắt đầu tìm nhỏ hơn ngày kết thúc tìm
-					for (int i = d1; i <= d2; i++) {
-						for (int j = m1; j <= m2; j++) {
-							for (int k = 0; k < p.size(); k++) {
-								if (p.at(k).getCheck() == 1) {
-									if (i == p.at(k).getNgay()) {
-										if (j == p.at(k).getThang()) {
-											count++;
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			if (d1 > d2) { // khi ngày bắt đầu tìm lớn hơn ngày kết thúc tìm
+		int c = getMergeNum1(d2, m2, y2);
 
+		for (int i = 0; i < p.size(); i++) {
+			for (int j = a; j <= c; j++) {
+				if (p.at(i).getCheck() == 1) {
+					if (j == p.at(i).getMergeNum()) {
+						count++;
+					}
 				}
 			}
 		}
 		cout << "So may bay noi dia co trong thoi gian da nhap la : " << count << endl;
-	} 
-
-	while (n == 8) { /* thong ke hoa hong phong ve nhan duoc trong khoang thoi gian*/
-	static int count = 0;
-	for (int i = 0; i < p.size(); i++) {
-		if (p.at(i).getCheck() == 1) {
-			count++;
-		}
 	}
-	vector <VeNoiDia> noidia(count);// phải khai báo size cùa vector để phân phát bộ nhớ , không thì khi dùng noidia.at(i) sẽ báo lỗi out of range
+	while (n == 8) { /* thong ke hoa hong phong ve nhan duoc trong khoang thoi gian*/
 
-	int tong = 0;
-	int d1;
-	int m1;
-	int y1;
-	cout << "Nhap ngay bat dau tinh : " << endl;
-	cin >> d1;
-	cout << "Nhap thang bat dau tinh : " << endl;
-	cin >> m1;
-	cout << "Nhap nam bat dau tinh : " << endl;
-	cin >> y1;
-
-
-	int d2;
-	int m2;
-	int y2;
-	cout << "Nhap ngay ket thuc tinh : " << endl;
-	cin >> d2;
-	cout << "Nhap thang ket thuc tinh : " << endl;
-	cin >> m2;
-	cout << "Nhap nam ket thuc tinh : " << endl;
-	cin >> y2;
-	while (y1 > y2) { // báo lỗi khi năm bắt đầu tìm lớn hơn năm kết thúc tìm
-		cout << "Vui long nhap lai ";
-		cin.sync();
+		int tong = 0;
+		int d1;
+		int m1;
+		int y1;
+		cout << "Nhap ngay bat dau tinh : " << endl;
+		cin >> d1;
+		cout << "Nhap thang bat dau tinh : " << endl;
+		cin >> m1;
 		cout << "Nhap nam bat dau tinh : " << endl;
 		cin >> y1;
+		int a = getMergeNum1(d1, m1, y1);
+
+		int d2;
+		int m2;
+		int y2;
+		cout << "Nhap ngay ket thuc tinh : " << endl;
+		cin >> d2;
+		cout << "Nhap thang ket thuc tinh : " << endl;
+		cin >> m2;
 		cout << "Nhap nam ket thuc tinh : " << endl;
 		cin >> y2;
-	}
-	if (y1 == y2) { //khi tìm trong cùng 1 năm
-		while (m1 > m2) { // cùng năm mà tháng bắt đầu tìm lớn hơn tháng kết thúc tìm thì báo lỗi
-			cout << "Vui long nhap lai ";
-			cin.sync();
-			cout << "Nhap thang bat dau tinh : " << endl;
-			cin >> m1;
-			cout << "Nhap thang ket thuc tinh : " << endl;
-			cin >> m2;
-		}
-		if (m1 == m2) { // khi tìm trong cùng tháng và cùng năm
-			while (d1 > d2) {
-				cout << "Vui long nhap lai ";
-				cin.sync();
-				cout << "Nhap ngay bat dau tinh : " << endl;
-				cin >> d1;
-				cout << "Nhap ngay ket thuc tinh : " << endl;
-				cin >> d2;
-			}
-			for (int i = d1; i <= d2; i++) {
-				for (int j = 0; j < p.size(); j++) {
-					if (p.at(j).getCheck() == 1) {
-						if (i == p.at(j).getNgay()) {
-							for (int k = 0; k < count; k++) {
-								noidia.at(k).setGiave(p.at(j).getGiave());
-								tong += noidia.at(k).getHoahong() / count;
-							}
-						}
-					}
-				}
-			}
-		}
-		if (m1 < m2) { // khi tháng bắt đầu tìm nhỏ hơn tháng kết thúc tìm
-			if (d1 < d2) { // khi ngày bắt đầu tìm nhỏ hơn ngày kết thúc tìm
-				for (int i = d1; i <= d2; i++) {
-					for (int j = m1; j <= m2; j++) {
-						for (int k = 0; k < p.size(); k++) {
-							if (p.at(k).getCheck() == 1) {
-								if (i == p.at(k).getNgay()) {
-									if (j == p.at(k).getThang()) {
-										for (int g = 0; g < count; g++) {
-											noidia.at(g).setGiave(p.at(k).getGiave());
-											tong += noidia.at(g).getHoahong() / count;
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-			if (d1 > d2) { // khi ngày bắt đầu tìm lớn hơn ngày kết thúc tìm
+		int c = getMergeNum1(d2, m2, y2);
 
-			}
+		for (int i = 0; i < p.size(); i++) {
+			for (int j = a; j <= c; j++)
+				if (p.at(i).getCheck() == 1) {
+					if (j = p.at(i).getMergeNum()) {
+						tong += p.at(i).getGiave() * 5 / 100;
+					}
+					if (p.at(i).getCheck() == 2) {
+						if (j = p.at(i).getMergeNum()) {
+							tong += p.at(i).getGiave() * 7 / 100 + 100000;
+						}
+					}
+				}
 		}
-	}
-	cout << "Tong so hoa hong phong ve thu duoc trong thoi gian ban da nhap la : " << tong << endl;
+		cout << "Tong so hoa hong phong ve thu duoc trong thoi gian ban da nhap la : " << tong << endl;
 	}
 }//kết thúc hàm main
 
