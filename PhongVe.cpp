@@ -91,14 +91,6 @@ int PhongVe::getMergeNum() {
 	return b;
  }
 
-int  PhongVe::getHoahong() {
-	if (getCheck() == 1) {
-		return getGiave() * 5 / 100;
-	}
-	else {
-		return (getGiave() * 7 / 100) + 100000;
-	}
-}
 
 
 void PhongVe::display() {

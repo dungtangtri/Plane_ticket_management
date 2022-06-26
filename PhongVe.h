@@ -13,7 +13,6 @@ private:
 	int ngay;
 	int thang;
 	int nam;
-	int hoahong;
 	int mergeNum;
 public:
 	
@@ -47,7 +46,6 @@ public:
 
 	int getMergeNum();
 
-	int getHoahong();
 	
 	
 	void display();
