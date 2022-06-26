@@ -2,9 +2,52 @@
 #include "PhongVe.h"
 #include <iostream>
 #include <string>
-
+#include <vector>
 
 using namespace std;
+void quickSort(vector<int>&a, int l, int r) {
+	int p = a[(l + r) / 2];// phần tử chốt
+	int i = l, j = r;
+	while (i < j) {
+		while (a[i] < p) {
+			i++;
+		}
+		while (a[j] > p) {
+			j--;
+		}
+		if (i <= j) {
+			int temp = a[i];
+			a[i] = a[j];
+			a[j] = temp;
+			i++;
+			j--;
+		}
+	}
+	if (i < r) {
+		quickSort(a, i, r);
+	}
+	if (l < j) {
+		quickSort(a, l, j);
+	}
+}
+bool BinSearch(vector<int> &a, int n, int x) {
+	int l = 0, r = n - 1;
+	while (l < r) {
+		int mid = (l + r) / 2;
+		if (a[mid] < x) {
+			l = mid + 1;
+		}
+		else {
+			r = mid;
+		}
+	}
+	if (a[l] == x) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 
 int getIntInput(int from, int to) { /* code nhằm kiểm tra đầu vào của dữ liệu có thuộc 1 khoảng nào không*/
 
@@ -405,6 +448,7 @@ int main() {
 		}
 	}
 	while (n == 7) {/*thong ke ve may bay noi dia trong khoang thoi gian*/
+		vector<int> vec;
 		int count = 0;
 		int d1;
 		int m1;
@@ -416,6 +460,7 @@ int main() {
 		cout << "Nhap nam bat dau tinh : " << endl;
 		cin >> y1;
 		int a = getMergeNum1(d1, m1, y1);
+		vec.push_back(a);
 
 		int d2;
 		int m2;
@@ -427,20 +472,23 @@ int main() {
 		cout << "Nhap nam ket thuc tinh : " << endl;
 		cin >> y2;
 		int c = getMergeNum1(d2, m2, y2);
+		vec.push_back(c);
+
 
 		for (int i = 0; i < p.size(); i++) {
-			for (int j = a; j <= c; j++) {
-				if (p.at(i).getCheck() == 1) {
-					if (j == p.at(i).getMergeNum()) {
-						count++;
-					}
-				}
+			vec.push_back(p.at(i).getMergeNum());
+		}
+
+		quickSort(vec, 0, vec.size() - 1);
+		for (int i = 0; i < p.size(); i++) {
+			if (BinSearch(vec, vec.size() , p.at(i).getMergeNum()) == true) {
+				count ++;
 			}
 		}
 		cout << "So may bay noi dia co trong thoi gian da nhap la : " << count << endl;
 	}
 	while (n == 8) { /* thong ke hoa hong phong ve nhan duoc trong khoang thoi gian*/
-
+		vector<int> vec;
 		int tong = 0;
 		int d1;
 		int m1;
@@ -452,6 +500,7 @@ int main() {
 		cout << "Nhap nam bat dau tinh : " << endl;
 		cin >> y1;
 		int a = getMergeNum1(d1, m1, y1);
+		vec.push_back(a);
 
 		int d2;
 		int m2;
@@ -463,19 +512,24 @@ int main() {
 		cout << "Nhap nam ket thuc tinh : " << endl;
 		cin >> y2;
 		int c = getMergeNum1(d2, m2, y2);
+		vec.push_back(c);
 
 		for (int i = 0; i < p.size(); i++) {
-			for (int j = a; j <= c; j++)
-				if (p.at(i).getCheck() == 1) {
-					if (j = p.at(i).getMergeNum()) {
-						tong += p.at(i).getGiave() * 5 / 100;
-					}
-					if (p.at(i).getCheck() == 2) {
-						if (j = p.at(i).getMergeNum()) {
-							tong += p.at(i).getGiave() * 7 / 100 + 100000;
-						}
-					}
+			vec.push_back(p.at(i).getMergeNum());
+		}
+		quickSort(vec, 0, vec.size() - 1);
+
+		for (int i = 0; i < p.size(); i++) {
+			if (p.at(i).getCheck() == 1) {
+				if (BinSearch(vec, vec.size(), p.at(i).getMergeNum()) == true) {
+					tong += p.at(i).getGiave() * 5 / 100;
 				}
+			}
+			else {
+				if (BinSearch(vec, vec.size(), p.at(i).getMergeNum()) == true) {
+					tong += p.at(i).getGiave() * 7 / 100 + 100000;
+				}
+			}
 		}
 		cout << "Tong so hoa hong phong ve thu duoc trong thoi gian ban da nhap la : " << tong << endl;
 	}
