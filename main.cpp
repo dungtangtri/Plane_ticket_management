@@ -468,7 +468,6 @@ int main() {
 		}
 	}
 	while (n == 7) {/*thong ke ve may bay noi dia trong khoang thoi gian*/
-		vector<int> vec;
 		int count = 0;
 		int d1;
 		int m1;
@@ -480,7 +479,6 @@ int main() {
 		cout << "Nhap nam bat dau tinh : " << endl;
 		cin >> y1;
 		int a = getMergeNum1(d1, m1, y1);
-		vec.push_back(a);
 
 		int d2;
 		int m2;
@@ -492,21 +490,18 @@ int main() {
 		cout << "Nhap nam ket thuc tinh : " << endl;
 		cin >> y2;
 		int c = getMergeNum1(d2, m2, y2);
-		vec.push_back(c);
 
 
-		for (int i = 0; i < p.size(); i++) {
-			vec.push_back(p.at(i).getMergeNum());
-		}
 
-		quickSort(vec, 0, vec.size() - 1);
+
 		for (int i = 0; i < p.size(); i++) {
 			if (p.at(i).getCheck() == 1) {
-				if (BinSearch(vec, vec.size(), p.at(i).getMergeNum()) == true) {
-					count++;
+					if (p.at(i).getMergeNum() <= c && p.at(i).getMergeNum() >= a) {
+
+						count++;
+					}
 				}
 			}
-		}
 		cout << "So may bay noi dia co trong thoi gian da nhap la : " << count << endl;
 		displayoption();
 		while (!(cin >> n)) {
@@ -516,7 +511,7 @@ int main() {
 		}
 	}
 	while (n == 8) { /* thong ke hoa hong phong ve nhan duoc trong khoang thoi gian*/
-		vector<int> vec;
+		
 		int tong = 0;
 		int d1;
 		int m1;
@@ -528,7 +523,7 @@ int main() {
 		cout << "Nhap nam bat dau tinh : " << endl;
 		cin >> y1;
 		int a = getMergeNum1(d1, m1, y1);
-		vec.push_back(a);
+
 
 		int d2;
 		int m2;
@@ -540,21 +535,16 @@ int main() {
 		cout << "Nhap nam ket thuc tinh : " << endl;
 		cin >> y2;
 		int c = getMergeNum1(d2, m2, y2);
-		vec.push_back(c);
 
-		for (int i = 0; i < p.size(); i++) {
-			vec.push_back(p.at(i).getMergeNum());
-		}
-		quickSort(vec, 0, vec.size() - 1);
 
 		for (int i = 0; i < p.size(); i++) {
 			if (p.at(i).getCheck() == 1) {
-				if (BinSearch(vec, vec.size(), p.at(i).getMergeNum()) == true) {
+				if (p.at(i).getMergeNum() <= c && p.at(i).getMergeNum() >= a) {
 					tong += p.at(i).getGiave() * 5 / 100;
 				}
 			}
 			else {
-				if (BinSearch(vec, vec.size(), p.at(i).getMergeNum()) == true) {
+				if (p.at(i).getMergeNum() <= c && p.at(i).getMergeNum() >= a) {
 					tong += p.at(i).getGiave() * 7 / 100 + 100000;
 				}
 			}

@@ -1,7 +1,4 @@
 ﻿  main.cpp
 C:\Users\dungt\OneDrive\Tài liệu\Visual Studio Project\Project 4\Project 4\main.cpp(502,35): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\dungt\OneDrive\Tài liệu\Visual Studio Project\Project 4\Project 4\main.cpp(505,8): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\dungt\OneDrive\Tài liệu\Visual Studio Project\Project 4\Project 4\main.cpp(548,35): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\dungt\OneDrive\Tài liệu\Visual Studio Project\Project 4\Project 4\main.cpp(552,8): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\dungt\OneDrive\Tài liệu\Visual Studio Project\Project 4\Project 4\main.cpp(557,8): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\dungt\OneDrive\Tài liệu\Visual Studio Project\Project 4\Project 4\main.cpp(549,35): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   Project 4.vcxproj -> C:\Users\dungt\OneDrive\Tài liệu\Visual Studio Project\Project 4\x64\Debug\Project 4.exe
