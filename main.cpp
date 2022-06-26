@@ -143,7 +143,16 @@ void displayoption() {
 	cout << "8 : Tinh so tien hoa hong phong ve nhan duoc trong khoang thoi gian\n";
 	cout << "9 : Thoat chuong trinh\n";
 }
-
+void fixingoption() {
+	cout << "Ban muon sua thong tin nao ?\n";
+	cout << "1: Gia ve\n";
+	cout << "2: Noi den\n";
+	cout << "3: Noi di\n";
+	cout << "4: Ngay di\n ";
+	cout << "5: Thang di\n";
+	cout << "6: Nam di\n";
+	cout << "7: Thoat\n";
+}
 
 int main() {
 	int n;
@@ -186,14 +195,7 @@ int main() {
 	}
 	while (n == 2)/*sửa thông tin máy bay*/
 	{
-		cout << "Ban muon sua thong tin nao ?\n";
-		cout << "1: Gia ve\n";
-		cout << "2: Noi den\n";
-		cout << "3: Noi di\n";
-		cout << "4: Ngay di\n ";
-		cout << "5: Thang di\n";
-		cout << "6: Nam di\n";
-		cout << "7: Thoat\n";
+		fixingoption();
 
 		while (!(cin >> m)) {
 			cin.clear();
@@ -221,6 +223,7 @@ int main() {
 			p.at(q - 1).setGiave(newprice);
 			cout << "Thong tin moi la : " << endl;
 			p.at(q - 1).display();
+			fixingoption();
 			while (!(cin >> m)) {
 				cin.clear();
 				cin.ignore(1000, '\n');
@@ -247,6 +250,7 @@ int main() {
 			p.at(q - 1).setNoiden(newarrive);
 			cout << "Thong tin moi la : " << endl;
 			p.at(q - 1).display();
+			fixingoption();
 			while (!(cin >> m)) {
 				cin.clear();
 				cin.ignore(1000, '\n');
@@ -273,6 +277,7 @@ int main() {
 			p.at(q - 1).setNoidi(newdepart);
 			cout << "Thong tin moi la : " << endl;
 			p.at(q - 1).display();
+			fixingoption();
 			while (!(cin >> m)) {
 				cin.clear();
 				cin.ignore(1000, '\n');
@@ -299,6 +304,7 @@ int main() {
 			p.at(q - 1).setNgay(newday);
 			cout << "Thong tin moi la : " << endl;
 			p.at(q - 1).display();
+			fixingoption();
 			while (!(cin >> m)) {
 				cin.clear();
 				cin.ignore(1000, '\n');
@@ -325,6 +331,7 @@ int main() {
 			p.at(q - 1).setThang(newmonth);
 			cout << "Thong tin moi la : " << endl;
 			p.at(q - 1).display();
+			fixingoption();
 			while (!(cin >> m)) {
 				cin.clear();
 				cin.ignore(1000, '\n');
@@ -351,6 +358,7 @@ int main() {
 			p.at(q - 1).setNam(newyear);
 			cout << "Thong tin moi la : " << endl;
 			p.at(q - 1).display();
+			fixingoption();
 			while (!(cin >> m)) {
 				cin.clear();
 				cin.ignore(1000, '\n');
@@ -436,6 +444,12 @@ int main() {
 				p.at(i).display();
 			}
 		}
+		displayoption();
+		while (!(cin >> n)) {
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Vui long nhap lai dung dinh dang.\n";
+		}
 	}
 	while (n == 6)/*tim kiem may bay theo noi den*/ {
 		string noiden;
@@ -445,6 +459,12 @@ int main() {
 			if (noiden == p.at(i).getNoiden()) {
 				p.at(i).display();
 			}
+		}
+		displayoption();
+		while (!(cin >> n)) {
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Vui long nhap lai dung dinh dang.\n";
 		}
 	}
 	while (n == 7) {/*thong ke ve may bay noi dia trong khoang thoi gian*/
@@ -481,11 +501,19 @@ int main() {
 
 		quickSort(vec, 0, vec.size() - 1);
 		for (int i = 0; i < p.size(); i++) {
-			if (BinSearch(vec, vec.size() , p.at(i).getMergeNum()) == true) {
-				count ++;
+			if (p.at(i).getCheck() == 1) {
+				if (BinSearch(vec, vec.size(), p.at(i).getMergeNum()) == true) {
+					count++;
+				}
 			}
 		}
 		cout << "So may bay noi dia co trong thoi gian da nhap la : " << count << endl;
+		displayoption();
+		while (!(cin >> n)) {
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Vui long nhap lai dung dinh dang.\n";
+		}
 	}
 	while (n == 8) { /* thong ke hoa hong phong ve nhan duoc trong khoang thoi gian*/
 		vector<int> vec;
@@ -532,6 +560,16 @@ int main() {
 			}
 		}
 		cout << "Tong so hoa hong phong ve thu duoc trong thoi gian ban da nhap la : " << tong << endl;
+		displayoption();
+		while (!(cin >> n)) {
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Vui long nhap lai dung dinh dang.\n";
+		}
 	}
+	while (n == 9) {
+		exit(0);
+	}
+
 }//kết thúc hàm main
 
