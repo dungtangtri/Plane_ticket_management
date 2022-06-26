@@ -5,49 +5,7 @@
 #include <vector>
 
 using namespace std;
-void quickSort(vector<int>&a, int l, int r) {
-	int p = a[(l + r) / 2];// phần tử chốt
-	int i = l, j = r;
-	while (i < j) {
-		while (a[i] < p) {
-			i++;
-		}
-		while (a[j] > p) {
-			j--;
-		}
-		if (i <= j) {
-			int temp = a[i];
-			a[i] = a[j];
-			a[j] = temp;
-			i++;
-			j--;
-		}
-	}
-	if (i < r) {
-		quickSort(a, i, r);
-	}
-	if (l < j) {
-		quickSort(a, l, j);
-	}
-}
-bool BinSearch(vector<int> &a, int n, int x) {
-	int l = 0, r = n - 1;
-	while (l < r) {
-		int mid = (l + r) / 2;
-		if (a[mid] < x) {
-			l = mid + 1;
-		}
-		else {
-			r = mid;
-		}
-	}
-	if (a[l] == x) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
+
 
 int getIntInput(int from, int to) { /* code nhằm kiểm tra đầu vào của dữ liệu có thuộc 1 khoảng nào không*/
 
