@@ -19,7 +19,6 @@ public:
 	PhongVe();
 	PhongVe(std::string ten, std::string noiden, std::string noidi, int giave,int ngay, int thang, int nam);
 
-
 	int getGiave();
 	void setGiave(int giave);
 

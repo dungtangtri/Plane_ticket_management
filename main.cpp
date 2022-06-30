@@ -18,7 +18,29 @@ int getIntInput(int from, int to) { /* code nhằm kiểm tra đầu vào của 
 			cout << "\nNhap gia tri trong khoang  " << from << " va " << to << ":\t";
 			cin >> input;
 
-			size_t takenChars;
+			size_t takenChars; // size_t to represent the size of an object
+			validinput = stoi(input, &takenChars);
+			if (validinput >= from && validinput <= to && takenChars == input.size()) isValidInput = true;
+		}
+		catch (...) {
+		}
+	}
+
+	return validinput;
+}
+long long getIntInput(long long from, long long to) { /* Run Time Polymorphism */
+	/* Run - time polymorphism takes place when functions are invoked during run time.It is also known as dynamic binding or late binding.
+	Function overriding is used to achieve run - time polymorphism.*/
+	string input;
+	bool isValidInput = false;
+	long long validinput;
+
+	while (!isValidInput) {
+		try {
+			cout << "\nNhap gia tri trong khoang  " << from << " va " << to << ":\t";
+			cin >> input;
+
+			size_t takenChars; // size_t to represent the size of an object
 			validinput = stoi(input, &takenChars);
 			if (validinput >= from && validinput <= to && takenChars == input.size()) isValidInput = true;
 		}
@@ -57,10 +79,10 @@ void get_input(vector<PhongVe> &p1, int n1) { // tạo số object của PhongVe
 		
 		cout << "\n Nhap noi di may bay " << i << ": ";
 		getline(cin >> ws, depart);
-		// dùng getline để nhập có khoảng trắng 
-		// Usage of std::ws will extract
-        // all  the whitespace character
-		// https://www.geeksforgeeks.org/problem-with-getline-after-cin/
+		/* dùng getline để nhập có khoảng trắng
+		 Usage of std::ws will extract
+         all  the whitespace character
+		 https://www.geeksforgeeks.org/problem-with-getline-after-cin/ */
 		p.setNoidi(depart);
 
 		cout << "\n Nhap noi den may bay " << i <<": ";
@@ -115,7 +137,7 @@ void fixingoption() {
 int main() {
 	int n;
 	int m;
-	int somaybay;
+	int somaybay;// số máy bay thêm vào 
 	int q;
 
 	int newprice;//  giá vé máy bay thay đổi
