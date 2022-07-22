@@ -1,4 +1,4 @@
-﻿
+﻿//Tăng Trí Dũng - 20203817 coded this file
 #include "PhongVe.h"
 #include <iostream>
 #include <string>
@@ -184,7 +184,7 @@ int main() {
 		}
 
 
-		while (m == 1) {
+		while (m == 1)/*sửa giá vé*/ {
 			for (int i = 0; i < p.size(); i++) {
 				p.at(i).display();
 			}
@@ -210,7 +210,7 @@ int main() {
 				cout << "Vui long nhap lai dung dinh dang.\n";
 			}
 		}
-		while (m == 2)
+		while (m == 2)/*sửa nơi đến*/
 		{
 			for (int i = 0; i < p.size(); i++) {
 				p.at(i).display();
@@ -222,11 +222,7 @@ int main() {
 				cout << "Vui long nhap lai dung dinh dang.\n";
 			}
 			cout << "Vui long nhap noi den moi :\n ";
-			while (!(cin >> newarrive)) {
-				cin.clear();
-				cin.ignore(1000, '\n');
-				cout << "Vui long nhap lai dung dinh dang.\n";
-			}
+			getline(cin >> ws, newarrive);
 			p.at(q - 1).setNoiden(newarrive);
 			cout << "Thong tin moi la : " << endl;
 			p.at(q - 1).display();
@@ -237,7 +233,7 @@ int main() {
 				cout << "Vui long nhap lai dung dinh dang.\n";
 			}
 		}
-		while (m == 3)
+		while (m == 3)/*sửa nơi đi*/
 		{
 			for (int i = 0; i < p.size(); i++) {
 				p.at(i).display();
@@ -249,11 +245,7 @@ int main() {
 				cout << "Vui long nhap lai dung dinh dang.\n";
 			}
 			cout << "Vui long nhap noi di moi :\n ";
-			while (!(cin >> newdepart)) {
-				cin.clear();
-				cin.ignore(1000, '\n');
-				cout << "Vui long nhap lai dung dinh dang.\n";
-			}
+			getline(cin >> ws, newdepart);
 			p.at(q - 1).setNoidi(newdepart);
 			cout << "Thong tin moi la : " << endl;
 			p.at(q - 1).display();
@@ -537,7 +529,7 @@ int main() {
 			cout << "Vui long nhap lai dung dinh dang.\n";
 		}
 	}
-	while (n == 9) {
+	while (n == 9){// thoát chương trình{
 		exit(0);
 	}
 

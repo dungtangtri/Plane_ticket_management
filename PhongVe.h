@@ -1,7 +1,7 @@
-﻿#pragma once
+﻿//Tăng Trí Dũng - 20203817 coded this file
+#pragma once
 #include <string>
 #include <vector>
-#include "stdio.h"
 
 class PhongVe {
 private:
